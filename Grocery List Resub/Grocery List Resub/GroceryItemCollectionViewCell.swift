@@ -21,10 +21,21 @@ class GroceryItemCollectionViewCell: UICollectionViewCell {
     }
     
     func updateViews() {
-        print("called updateviews")
         guard let item = groceryItem else {return}
         nameLabel.text = item.name
         imageView.image = UIImage(named: item.imageName)
+        if item.hasBeenAdded {
+            hasBeenAddedLabel.text = "Added"
+        }
+        else {
+            hasBeenAddedLabel.text = "Not Added"
+        }
     }
     
+}
+
+extension GroceryItemCollectionViewCell: ItemSelectionDelegate {
+    func didTapItem(item: GroceryItem) {
+        item.hasBeenAdded.toggle()
+    }
 }

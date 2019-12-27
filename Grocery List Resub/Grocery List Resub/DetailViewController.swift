@@ -18,10 +18,10 @@ class DetailViewController: UIViewController {
     var itemCount = 0
     var personName = ""
     var personAddress = ""
-    var groceryItem: GroceryItem? // ?
+    //var groceryItem: GroceryItem? // ?
     
     @IBAction func buttonTapped(_ sender: UIButton) {
-        print("buttonTapped")
+        //print("buttonTapped")
         guard let name = nameTextField.text, let address = addressTextField.text, !name.isEmpty, !address.isEmpty else {return}
         personName = name
         personAddress = address
@@ -44,5 +44,12 @@ class DetailViewController: UIViewController {
 
     func backHandler(alert: UIAlertAction!) {
         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension DetailViewController: DetailDelegate {
+    func didAdd(list: [GroceryItem]) {
+        let addedItems = list.filter {$0.hasBeenAdded}
+        itemCount = addedItems.count
     }
 }

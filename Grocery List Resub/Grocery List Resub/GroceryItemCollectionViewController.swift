@@ -10,9 +10,19 @@ import UIKit
 
 // segue called ShowDetailSegue
 
+protocol ItemSelectionDelegate {
+    func didTapItem(item: GroceryItem)
+}
+
+protocol DetailDelegate {
+    func didAdd(list: [GroceryItem])
+}
+
 class GroceryItemCollectionViewController: UICollectionViewController {
     
     let groceryItemController = GroceryItemController()
+    var itemSelectionDelegate: ItemSelectionDelegate?
+    var detailDelegate: DetailDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,18 +34,21 @@ class GroceryItemCollectionViewController: UICollectionViewController {
         super.viewWillAppear(animated)
         collectionView.reloadData()
     }
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedCell = groceryItemController.groceryItems[indexPath.item]
+        itemSelectionDelegate?.didTapItem(item: selectedCell)
+        collectionView.reloadData()
     }
-    */
-
-    // MARK: UICollectionViewDataSource
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowDetailSegue" {
+            guard let detailVC = segue.destination as? DetailViewController else {return}
+            detailDelegate = detailVC
+            detailDelegate?.didAdd(list: groceryItemController.groceryItems)
+        }
+        
+    }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -53,7 +66,7 @@ class GroceryItemCollectionViewController: UICollectionViewController {
         
         let item = groceryItemController.groceryItems[indexPath.item]
         cell.groceryItem = item
-        
+        itemSelectionDelegate = cell
     
         // Configure the cell
     
