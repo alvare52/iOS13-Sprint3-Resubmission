@@ -8,8 +8,6 @@
 
 import UIKit
 
-// segue called ShowDetailSegue
-
 protocol ItemSelectionDelegate {
     func didTapItem(item: GroceryItem)
 }
@@ -29,7 +27,6 @@ class GroceryItemCollectionViewController: UICollectionViewController {
         
     }
 
-    // ?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         collectionView.reloadData()
@@ -38,6 +35,7 @@ class GroceryItemCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedCell = groceryItemController.groceryItems[indexPath.item]
         itemSelectionDelegate?.didTapItem(item: selectedCell)
+        groceryItemController.saveToPersistentStore()
         collectionView.reloadData()
     }
     
@@ -67,11 +65,6 @@ class GroceryItemCollectionViewController: UICollectionViewController {
         let item = groceryItemController.groceryItems[indexPath.item]
         cell.groceryItem = item
         itemSelectionDelegate = cell
-    
-        // Configure the cell
-    
         return cell
     }
-
-
 }
