@@ -25,7 +25,7 @@
                             <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="bP8-1D-XOj">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GroceryItemCell" id="bP8-1D-XOj" customClass="GroceryItemCollectionViewCell" customModule="Grocery_List_Resub" customModuleProvider="target">
                                 <rect key="frame" x="5" y="5" width="190" height="250"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -72,6 +72,11 @@
                                     <constraint firstAttribute="trailing" secondItem="fDJ-Bs-IYH" secondAttribute="trailing" id="eH5-mO-Snx"/>
                                     <constraint firstItem="fDJ-Bs-IYH" firstAttribute="top" secondItem="bP8-1D-XOj" secondAttribute="top" id="xGU-cS-eKq"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="hasBeenAddedLabel" destination="kZy-MV-hKb" id="oRN-yR-PIt"/>
+                                    <outlet property="imageView" destination="P2w-HK-oLf" id="kFm-n0-Pc1"/>
+                                    <outlet property="nameLabel" destination="zeH-aq-3BD" id="nBz-Wm-xzK"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -91,10 +96,10 @@
             </objects>
             <point key="canvasLocation" x="1039.1304347826087" y="87.723214285714278"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="bdp-JA-CSz">
             <objects>
-                <viewController id="ctR-Is-O69" sceneMemberID="viewController">
+                <viewController id="ctR-Is-O69" customClass="DetailViewController" customModule="Grocery_List_Resub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n0K-UR-LmA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -108,13 +113,13 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tHX-3W-XEM">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tHX-3W-XEM">
                                         <rect key="frame" x="0.0" y="29.5" width="374" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CG5-7l-d6E">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CG5-7l-d6E">
                                         <rect key="frame" x="0.0" y="67.5" width="374" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -127,6 +132,9 @@
                                         <state key="normal" title="Send Order">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="ctR-Is-O69" eventType="touchUpInside" id="iLw-KX-d8g"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -139,6 +147,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PsT-ih-CDd"/>
                     </view>
+                    <connections>
+                        <outlet property="addressTextField" destination="CG5-7l-d6E" id="ujJ-MT-KK8"/>
+                        <outlet property="itemCountLabel" destination="QTF-Ka-mI6" id="rEM-3o-7XS"/>
+                        <outlet property="nameTextField" destination="tHX-3W-XEM" id="iYu-vw-umc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u7f-bs-LCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
