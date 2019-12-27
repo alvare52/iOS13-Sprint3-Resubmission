@@ -13,7 +13,7 @@
         <!--Grocery List-->
         <scene sceneID="ZKI-dd-RD4">
             <objects>
-                <collectionViewController id="vHq-X7-kle" sceneMemberID="viewController">
+                <collectionViewController id="vHq-X7-kle" customClass="GroceryItemCollectionViewController" customModule="Grocery_List_Resub" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="95r-M5-9IB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -40,6 +40,12 @@
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P2w-HK-oLf">
                                                             <rect key="frame" x="0.0" y="0.0" width="150" height="145"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="145" id="0t0-KX-n3v"/>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="145" id="Qpv-BP-Hi3"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="i7U-fv-lqJ"/>
+                                                                <constraint firstAttribute="width" constant="150" id="j9m-hW-fov"/>
+                                                            </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fruit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeH-aq-3BD">
                                                             <rect key="frame" x="0.0" y="157" width="150" height="20.5"/>

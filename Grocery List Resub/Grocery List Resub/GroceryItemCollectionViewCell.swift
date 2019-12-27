@@ -14,6 +14,17 @@ class GroceryItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var hasBeenAddedLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     
+    var groceryItem: GroceryItem? {
+        didSet {
+            updateViews()
+        }
+    }
     
+    func updateViews() {
+        print("called updateviews")
+        guard let item = groceryItem else {return}
+        nameLabel.text = item.name
+        imageView.image = UIImage(named: item.imageName)
+    }
     
 }
